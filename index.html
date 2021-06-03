@@ -5,104 +5,220 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        table{
+        body, html {
+            height: 100%;
+            font-family: sans-serif;
+        }
+        .bgimg {
+            background-position: center;
+            background-size: cover;
+            background-image: url("images/coffeehouse.jpg");
+            min-height: 75%;
+        }
+        #menu{
+            margin: 20px;
+        }
+        /*table{
             border: 1px solid #dee2e6;
             margin-bottom: 20px;
             border-spacing: 0;
             font-size: 16px;
             width: 100%;
             max-width: 500px;
-        }
+        }*/
         td{
             text-align: center;
         }
         input{
             width: 30%;
+            color: gray;
+            border: 0.5px solid grey;
+            border-radius: 5%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        a{
+            font-size: 20px;
+        }
+        a:hover{
+            font-size: 18px;
+        }
+        .price{
+            color: grey;
+            line-height: 30%;
+        }
+        button{
+            border: none;
         }
     </style>
 </head>
 <body>
-    <table class="cart-table">
-        <thead>
-            <tr>
-                <th>Item</th>
-                <th>Quantity</th>
-                <th>Total</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <p>Waffles</p>
-                    <p>
-                        <span>$</span>
-                        <span id="waffle-price">7.00</span>
-                    </p>
-                    
-                </td>
-                <td><input id="waffle" type="number" min=0 onchange="calculatePrice('waffle-total', 'waffle-price', 'waffle')"><button onclick="clearOrder('waffle', 'waffle-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
-                <td>
-                    <p>
-                        <span id="waffle-total"></span>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>Pancakes</p>
-                    <p>
-                        <span>$</span>
-                        <span id="pancake-price">6.00</span>
-                    </p>
-                </td>
-                <td><input id="pancake" type="number" min=0 onchange="calculatePrice('pancake-total', 'pancake-price', 'pancake')"><button onclick="clearOrder('pancake', 'pancake-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
-                <td>
-                    <p>
-                        <span id="pancake-total"></span>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>Parfait</p>
-                    <p>
-                        <span>$</span>
-                        <span id="parfait-price">4.00</span>
-                    </p>
-                </td>
-                <td><input id="parfait" type="number" min=0 onchange="calculatePrice('parfait-total', 'parfait-price', 'parfait')"><button onclick="clearOrder('parfait', 'parfait-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
-                <td>
-                    <p>
-                        <span id="parfait-total"></span>
-                    </p>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table id="total-table">
-        <tbody>
-            <tr>
-                <th>Subtotal</th>
-                <td></td>
-            </tr>
-            <tr>
-                <th>Total</th>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
+    <!-- Links (sit on top) -->
+    <div class="w3-top">
+        <div class="w3-row w3-padding w3-black">
+            <div class="w3-col s3">
+                <a href="#" class="w3-button w3-block w3-black">HOME</a>
+            </div>
+            <div class="w3-col s3">
+                <a href="#about" class="w3-button w3-block w3-black">ABOUT</a>
+            </div>
+            <div class="w3-col s3">
+                <a href="#menu" class="w3-button w3-block w3-black">MENU</a>
+            </div>
+            <div class="w3-col s3">
+                <a href="#where" class="w3-button w3-block w3-black">WHERE</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header with image -->
+    <header class="bgimg w3-display-container w3-grayscale-min" id="home">
+        <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
+            <span class="w3-tag">Open from 6am to 5pm</span>
+        </div>
+        <div class="w3-display-bottomright w3-center w3-padding-large">
+            <span class="w3-text-white">Blackrock, Dublin</span>
+        </div>
+    </header>
+    
+    <!-- Add a background color and large text to the whole page -->
+    <div class="w3-sand w3-grayscale w3-large">
+  
+    <!-- Menu Container -->
+    <div class="w3-container" id="menu">
+        <div class="w3-content" style="max-width:700px">
+            <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">THE MENU</span></h5>
+
+            <div class="w3-row w3-center w3-card w3-padding">
+                <a href="javascript:void(0)" id="myLink" onclick="showEat();">
+                  <div class="w3-col s6 tablink">Eat</div>
+                </a>
+                <a href="javascript:void(0)" onclick="showDrink();">
+                  <div class="w3-col s6 tablink">Drink</div>
+                </a>
+            </div>
+
+            <div id="Eat" class="w3-container menu w3-padding-48 w3-card">
+                <table class="cart-table">
+
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h5>Waffles</h5>
+                                <p class="price">
+                                    <span>$</span>
+                                    <span id="waffle-price">7.00</span>
+                                </p>
+                                
+                            </td>
+                            <td><input id="waffle" type="number" min=0 onchange="calculatePrice('waffle-total', 'waffle-price', 'waffle')"><button onclick="clearOrder('waffle', 'waffle-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td>
+                                <p>
+                                    <span id="waffle-total"></span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5>Pancakes</h5>
+                                <p class="price">
+                                    <span>$</span>
+                                    <span id="pancake-price">6.00</span>
+                                </p>
+                            </td>
+                            <td><input id="pancake" type="number" min=0 onchange="calculatePrice('pancake-total', 'pancake-price', 'pancake')"><button onclick="clearOrder('pancake', 'pancake-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td>
+                                <p>
+                                    <span id="pancake-total"></span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5>Parfait</h5>
+                                <p class="price">
+                                    <span>$</span>
+                                    <span id="parfait-price">4.00</span>
+                                </p>
+                            </td>
+                            <td><input id="parfait" type="number" min=0 onchange="calculatePrice('parfait-total', 'parfait-price', 'parfait')"><button onclick="clearOrder('parfait', 'parfait-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td>
+                                <p>
+                                    <span id="parfait-total"></span>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="Drinks" class="w3-container menu w3-padding-48 w3-card" style="display: none;">
+                <h5>Coffee</h5>
+                <p class="w3-text-grey">Regular coffee 2.50</p><br>
+              
+                <h5>Chocolato</h5>
+                <p class="w3-text-grey">Chocolate espresso with milk 4.50</p><br>
+              
+                <h5>Corretto</h5>
+                <p class="w3-text-grey">Whiskey and coffee 5.00</p><br>
+              
+                <h5>Iced tea</h5>
+                <p class="w3-text-grey">Hot tea, except not hot 3.00</p><br>
+              
+                <h5>Soda</h5>
+                <p class="w3-text-grey">Coke, Sprite, Fanta, etc. 2.50</p>
+              </div> 
+
+            <div class="w3-container menu w3-padding-48 w3-card">
+                <table id="total-table">
+                    <tbody>
+                        <tr>
+                            <th>Subtotal</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+    
+
+    
+
 
     <script>
+        //Button clear quantity
         function clearOrder(qnty,total){
             console.log (document.getElementById(qnty).value);
             document.getElementById(qnty).value = null;
             document.getElementById(total).innerText = null;
         }
 
+        //Calculate the price of each item depending the quantity
         function calculatePrice(total, price, item){
             document.getElementById(total).innerHTML = '<span>$</span>' + document.getElementById(price).innerText * document.getElementById(item).value;
         }
+
+        // Tabbed Menu
+        function showDrink(){
+            document.getElementById('Drinks').style.display= "block";
+            document.getElementById('Eat').style.display= "none";
+        }
+
+        function showEat(){
+            document.getElementById('Eat').style.display= "block";
+            document.getElementById('Drinks').style.display= "none";
+        }
+        
     </script>
 </body>
 </html>
