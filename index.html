@@ -52,6 +52,24 @@
         button{
             border: none;
         }
+        #continue-button{
+            margin-bottom: 30px;
+            background-color: grey;
+            color: white;
+            border: 0.5px solid grey;
+            border-radius: 5%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        #total-table{
+            margin: 10px;
+            display: none;
+        }
+        .total{
+            display: none;
+        }
+        #total-table td{
+            padding-left: 20px;
+        }
     </style>
 </head>
 <body>
@@ -106,7 +124,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <h5>Waffles</h5>
+                                <h5>Belgian Waffles</h5>
                                 <p class="price">
                                     <span>$</span>
                                     <span id="waffle-price">7.00</span>
@@ -116,13 +134,13 @@
                             <td><input id="waffle" type="number" min=0 onchange="calculatePrice('waffle-total', 'waffle-price', 'waffle')"><button onclick="clearOrder('waffle', 'waffle-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             <td>
                                 <p>
-                                    <span id="waffle-total"></span>
+                                    <span class="total" id="waffle-total">0</span>
                                 </p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <h5>Pancakes</h5>
+                                <h5>Bluberry Pancakes</h5>
                                 <p class="price">
                                     <span>$</span>
                                     <span id="pancake-price">6.00</span>
@@ -131,13 +149,13 @@
                             <td><input id="pancake" type="number" min=0 onchange="calculatePrice('pancake-total', 'pancake-price', 'pancake')"><button onclick="clearOrder('pancake', 'pancake-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             <td>
                                 <p>
-                                    <span id="pancake-total"></span>
+                                    <span class="total" id="pancake-total">0</span>
                                 </p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <h5>Parfait</h5>
+                                <h5>Granola&Fruits Parfait</h5>
                                 <p class="price">
                                     <span>$</span>
                                     <span id="parfait-price">4.00</span>
@@ -146,7 +164,7 @@
                             <td><input id="parfait" type="number" min=0 onchange="calculatePrice('parfait-total', 'parfait-price', 'parfait')"><button onclick="clearOrder('parfait', 'parfait-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             <td>
                                 <p>
-                                    <span id="parfait-total"></span>
+                                    <span class="total" id="parfait-total">0</span>
                                 </p>
                             </td>
                         </tr>
@@ -155,40 +173,78 @@
             </div>
 
             <div id="Drinks" class="w3-container menu w3-padding-48 w3-card" style="display: none;">
-                <h5>Coffee</h5>
-                <p class="w3-text-grey">Regular coffee 2.50</p><br>
-              
-                <h5>Chocolato</h5>
-                <p class="w3-text-grey">Chocolate espresso with milk 4.50</p><br>
-              
-                <h5>Corretto</h5>
-                <p class="w3-text-grey">Whiskey and coffee 5.00</p><br>
-              
-                <h5>Iced tea</h5>
-                <p class="w3-text-grey">Hot tea, except not hot 3.00</p><br>
-              
-                <h5>Soda</h5>
-                <p class="w3-text-grey">Coke, Sprite, Fanta, etc. 2.50</p>
-              </div> 
+                <table class="cart-table">
+
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h5>Regular Coffee</h5>
+                                <p class="price">
+                                    <span>$</span>
+                                    <span id="coffee-price">2.50</span>
+                                </p>
+                                
+                            </td>
+                            <td><input id="coffee" type="number" min=0 onchange="calculatePrice('coffee-total', 'coffee-price', 'coffee')"><button onclick="clearOrder('coffee', 'coffee-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td>
+                                <p>
+                                    <span class="total" id="coffee-total">0</span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5>Chocolate espresso with milk</h5>
+                                <p class="price">
+                                    <span>$</span>
+                                    <span id="chocolate-price">4.50</span>
+                                </p>
+                            </td>
+                            <td><input id="chocolate" type="number" min=0 onchange="calculatePrice('chocolate-total', 'chocolate-price', 'chocolate')"><button onclick="clearOrder('chocolate', 'chocolate-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td>
+                                <p>
+                                    <span class="total" id="chocolate-total">0</span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5>Hot tea</h5>
+                                <p class="price">
+                                    <span>$</span>
+                                    <span id="tea-price">3.00</span>
+                                </p>
+                            </td>
+                            <td><input id="tea" type="number" min=0 onchange="calculatePrice('tea-total', 'tea-price', 'tea')"><button onclick="clearOrder('tea', 'tea-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td>
+                                <p>
+                                    <span class="total" id="tea-total">0</span>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <div class="w3-container menu w3-padding-48 w3-card">
+                <button id="continue-button" onclick="showTotalTable()">Continue</button>
                 <table id="total-table">
                     <tbody>
                         <tr>
-                            <th>Subtotal</th>
-                            <td></td>
+                            <td>Subtotal</td>
+                            <td id="subtotal"></td>
                         </tr>
                         <tr>
-                            <th>Total</th>
-                            <td></td>
+                            <th>Total (delivery $3)</th>
+                            <td id='final-total'></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
 
+        
         </div>
-    </div>
     </div>
     
 
@@ -198,14 +254,15 @@
     <script>
         //Button clear quantity
         function clearOrder(qnty,total){
-            console.log (document.getElementById(qnty).value);
+            //console.log (document.getElementById(qnty).value);
             document.getElementById(qnty).value = null;
             document.getElementById(total).innerText = null;
         }
 
         //Calculate the price of each item depending the quantity
         function calculatePrice(total, price, item){
-            document.getElementById(total).innerHTML = '<span>$</span>' + document.getElementById(price).innerText * document.getElementById(item).value;
+            document.getElementById(total).style.display="inline"
+            document.getElementById(total).innerHTML = document.getElementById(price).innerText * document.getElementById(item).value;
         }
 
         // Tabbed Menu
@@ -217,6 +274,26 @@
         function showEat(){
             document.getElementById('Eat').style.display= "block";
             document.getElementById('Drinks').style.display= "none";
+        }
+
+        function showTotalTable(){
+           document.getElementById('total-table').style.display="block";
+           document.getElementById('total-table').scrollIntoView();
+
+           var totals = document.getElementsByClassName('total');
+           //console.log(totals);
+           var subtotal=0;
+
+           for(var i=0; i<totals.length; i++){
+            //console.log(typeof parseFloat(totals[i].innerText));
+            //console.log(parseFloat(totals[i].innerText));
+            subtotal += parseFloat(totals[i].innerText);
+           }
+           console.log("Subtotal: " + subtotal);
+           document.getElementById('subtotal').innerText = "  $" + subtotal;
+           
+           var finalTotal= subtotal + 3;
+           document.getElementById('final-total').innerText = " $" + finalTotal;
         }
         
     </script>
