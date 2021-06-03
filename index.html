@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        table{
+            border: 1px solid #dee2e6;
+            margin-bottom: 20px;
+            border-spacing: 0;
+            font-size: 16px;
+            width: 100%;
+            max-width: 500px;
+        }
+        td{
+            text-align: center;
+        }
+        input{
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Total</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <p>Waffles</p>
+                    <p>
+                        <span>$</span>
+                        <span id="waffle-price">7.00</span>
+                    </p>
+                    
+                </td>
+                <td><input id="waffle" type="number" min=0 onchange="calculatePrice('waffle-total', 'waffle-price', 'waffle')"><button onclick="clearOrder('waffle', 'waffle-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                <td>
+                    <p>
+                        <span id="waffle-total"></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Pancakes</p>
+                    <p>
+                        <span>$</span>
+                        <span id="pancake-price">6.00</span>
+                    </p>
+                </td>
+                <td><input id="pancake" type="number" min=0 onchange="calculatePrice('pancake-total', 'pancake-price', 'pancake')"><button onclick="clearOrder('pancake', 'pancake-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                <td>
+                    <p>
+                        <span id="pancake-total"></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Parfait</p>
+                    <p>
+                        <span>$</span>
+                        <span id="parfait-price">4.00</span>
+                    </p>
+                </td>
+                <td><input id="parfait" type="number" min=0 onchange="calculatePrice('parfait-total', 'parfait-price', 'parfait')"><button onclick="clearOrder('parfait', 'parfait-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                <td>
+                    <p>
+                        <span id="parfait-total"></span>
+                    </p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table id="total-table">
+        <tbody>
+            <tr>
+                <th>Subtotal</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function clearOrder(qnty,total){
+            console.log (document.getElementById(qnty).value);
+            document.getElementById(qnty).value = null;
+            document.getElementById(total).innerText = null;
+        }
+
+        function calculatePrice(total, price, item){
+            document.getElementById(total).innerHTML = '<span>$</span>' + document.getElementById(price).innerText * document.getElementById(item).value;
+        }
+    </script>
+</body>
+</html>
