@@ -34,7 +34,7 @@
             text-align: center;
         }
         input{
-            width: 30%;
+            width: 50%;
             color: gray;
             border: 0.5px solid grey;
             border-radius: 5%;
@@ -130,7 +130,7 @@
                                 </p>
                                 
                             </td>
-                            <td><input id="waffle" type="number" min=0 onchange="calculatePrice('waffle-total', 'waffle-price', 'waffle', 'w-sign')"><button onclick="clearOrder('waffle', 'waffle-total', 'w-sign')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td><input onkeydown="return false"  id="waffle" type="number" min=0 max="10" onchange="calculatePrice('waffle-total', 'waffle-price', 'waffle', 'w-sign')"><button onclick="clearOrder('waffle', 'waffle-total', 'w-sign')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             <td>
                                 <p>
                                     <span id="w-sign">$</span>
@@ -146,7 +146,7 @@
                                     <span id="pancake-price">6.00</span>
                                 </p>
                             </td>
-                            <td><input id="pancake" type="number" min=0 onchange="calculatePrice('pancake-total', 'pancake-price', 'pancake', 'b-sign')"><button onclick="clearOrder('pancake', 'pancake-total', 'b-sign')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td><input onkeydown="return false"  id="pancake" type="number" min=0 max="10" onchange="calculatePrice('pancake-total', 'pancake-price', 'pancake', 'b-sign')"><button onclick="clearOrder('pancake', 'pancake-total', 'b-sign')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             <td>
                                 <p>
                                     <span id="b-sign">$</span>
@@ -162,7 +162,7 @@
                                     <span id="parfait-price">4.00</span>
                                 </p>
                             </td>
-                            <td><input id="parfait" type="number" min=0 onchange="calculatePrice('parfait-total', 'parfait-price', 'parfait', 'p-sign')"><button onclick="clearOrder('parfait', 'parfait-total', 'p-sign')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td><input onkeydown="return false"  id="parfait" type="number" min=0 max="10" onchange="calculatePrice('parfait-total', 'parfait-price', 'parfait', 'p-sign')"><button onclick="clearOrder('parfait', 'parfait-total', 'p-sign')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             <td>
                                 <p>
                                     <span id="p-sign">$</span>
@@ -187,7 +187,7 @@
                                 </p>
                                 
                             </td>
-                            <td><input id="coffee" type="number" min=0 onchange="calculatePrice('coffee-total', 'coffee-price', 'coffee', 'c-sign')"><button onclick="clearOrder('coffee', 'coffee-total', 'c-sign')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td><input onkeydown="return false" id="coffee" type="number" min=0 max="10" onchange="calculatePrice('coffee-total', 'coffee-price', 'coffee', 'c-sign')"><button onclick="clearOrder('coffee', 'coffee-total', 'c-sign')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             <td>
                                 <p>
                                     <span id="c-sign">$</span>
@@ -203,7 +203,7 @@
                                     <span id="chocolate-price">4.50</span>
                                 </p>
                             </td>
-                            <td><input id="chocolate" type="number" min=0 onchange="calculatePrice('chocolate-total', 'chocolate-price', 'chocolate', 'ch-sign')"><button onclick="clearOrder('chocolate', 'chocolate-total', 'ch-sign')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td><input onkeydown="return false" id="chocolate" type="number" min=0 max="10" onchange="calculatePrice('chocolate-total', 'chocolate-price', 'chocolate', 'ch-sign')"><button onclick="clearOrder('chocolate', 'chocolate-total', 'ch-sign')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             <td>
                                 <p>
                                     <span id="ch-sign">$</span>
@@ -219,7 +219,7 @@
                                     <span id="tea-price">3.00</span>
                                 </p>
                             </td>
-                            <td><input id="tea" type="number" min=0 onchange="calculatePrice('tea-total', 'tea-price', 'tea', 't-sign')"><button onclick="clearOrder('tea', 'tea-total', 't-sign')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td><input onkeydown="return false" id="tea" type="number" min=0 max="10" onchange="calculatePrice('tea-total', 'tea-price', 'tea', 't-sign')"><button onclick="clearOrder('tea', 'tea-total', 't-sign')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             <td>
                                 <p>
                                     <span id="t-sign">$</span>
@@ -259,6 +259,7 @@
 
 
     <script>
+
         //Button clear quantity
         function clearOrder(qnty,total, sign){
             //console.log (document.getElementById(qnty).value);
