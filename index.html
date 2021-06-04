@@ -11,6 +11,7 @@
         body, html {
             height: 100%;
             font-family: sans-serif;
+            background-color: #fdfae6;
         }
         .bgimg {
             background-position: center;
@@ -52,23 +53,27 @@
         button{
             border: none;
         }
-        #continue-button{
-            margin-bottom: 30px;
+        #continue-button, #checkout-button{
+            margin: 30px;
             background-color: grey;
             color: white;
             border: 0.5px solid grey;
             border-radius: 5%;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
+        #checkout-button{
+            display: none;
+        }
         #total-table{
             margin: 10px;
             display: none;
         }
-        .total{
-            display: none;
-        }
         #total-table td{
             padding-left: 20px;
+        }
+        .total, #w-sign, #b-sign, #p-sign, #c-sign, #ch-sign, #t-sign{
+            display: none;
+            color: grey;
         }
     </style>
 </head>
@@ -80,13 +85,7 @@
                 <a href="#" class="w3-button w3-block w3-black">HOME</a>
             </div>
             <div class="w3-col s3">
-                <a href="#about" class="w3-button w3-block w3-black">ABOUT</a>
-            </div>
-            <div class="w3-col s3">
                 <a href="#menu" class="w3-button w3-block w3-black">MENU</a>
-            </div>
-            <div class="w3-col s3">
-                <a href="#where" class="w3-button w3-block w3-black">WHERE</a>
             </div>
         </div>
     </div>
@@ -102,7 +101,7 @@
     </header>
     
     <!-- Add a background color and large text to the whole page -->
-    <div class="w3-sand w3-grayscale w3-large">
+    <div class="w3-grayscale w3-large">
   
     <!-- Menu Container -->
     <div class="w3-container" id="menu">
@@ -110,11 +109,11 @@
             <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">THE MENU</span></h5>
 
             <div class="w3-row w3-center w3-card w3-padding">
-                <a href="javascript:void(0)" id="myLink" onclick="showEat();">
-                  <div class="w3-col s6 tablink">Eat</div>
+                <a href="javascript:void(0)" id="myLink" onclick="showTab('Eat', 'eatTab', 'Drinks', 'drinkTab');">
+                  <div id="eatTab" class="w3-col s6 tablink">Eat</div>
                 </a>
-                <a href="javascript:void(0)" onclick="showDrink();">
-                  <div class="w3-col s6 tablink">Drink</div>
+                <a href="javascript:void(0)" onclick="showTab('Drinks', 'drinkTab', 'Eat', 'eatTab');">
+                  <div id="drinkTab" class="w3-col s6 tablink">Drink</div>
                 </a>
             </div>
 
@@ -131,9 +130,10 @@
                                 </p>
                                 
                             </td>
-                            <td><input id="waffle" type="number" min=0 onchange="calculatePrice('waffle-total', 'waffle-price', 'waffle')"><button onclick="clearOrder('waffle', 'waffle-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td><input id="waffle" type="number" min=0 onchange="calculatePrice('waffle-total', 'waffle-price', 'waffle', 'w-sign')"><button onclick="clearOrder('waffle', 'waffle-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             <td>
                                 <p>
+                                    <span id="w-sign">$</span>
                                     <span class="total" id="waffle-total">0</span>
                                 </p>
                             </td>
@@ -146,9 +146,10 @@
                                     <span id="pancake-price">6.00</span>
                                 </p>
                             </td>
-                            <td><input id="pancake" type="number" min=0 onchange="calculatePrice('pancake-total', 'pancake-price', 'pancake')"><button onclick="clearOrder('pancake', 'pancake-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td><input id="pancake" type="number" min=0 onchange="calculatePrice('pancake-total', 'pancake-price', 'pancake', 'b-sign')"><button onclick="clearOrder('pancake', 'pancake-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             <td>
                                 <p>
+                                    <span id="b-sign">$</span>
                                     <span class="total" id="pancake-total">0</span>
                                 </p>
                             </td>
@@ -161,9 +162,10 @@
                                     <span id="parfait-price">4.00</span>
                                 </p>
                             </td>
-                            <td><input id="parfait" type="number" min=0 onchange="calculatePrice('parfait-total', 'parfait-price', 'parfait')"><button onclick="clearOrder('parfait', 'parfait-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td><input id="parfait" type="number" min=0 onchange="calculatePrice('parfait-total', 'parfait-price', 'parfait', 'p-sign')"><button onclick="clearOrder('parfait', 'parfait-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             <td>
                                 <p>
+                                    <span id="p-sign">$</span>
                                     <span class="total" id="parfait-total">0</span>
                                 </p>
                             </td>
@@ -185,9 +187,10 @@
                                 </p>
                                 
                             </td>
-                            <td><input id="coffee" type="number" min=0 onchange="calculatePrice('coffee-total', 'coffee-price', 'coffee')"><button onclick="clearOrder('coffee', 'coffee-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td><input id="coffee" type="number" min=0 onchange="calculatePrice('coffee-total', 'coffee-price', 'coffee', 'c-sign')"><button onclick="clearOrder('coffee', 'coffee-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             <td>
                                 <p>
+                                    <span id="c-sign">$</span>
                                     <span class="total" id="coffee-total">0</span>
                                 </p>
                             </td>
@@ -200,9 +203,10 @@
                                     <span id="chocolate-price">4.50</span>
                                 </p>
                             </td>
-                            <td><input id="chocolate" type="number" min=0 onchange="calculatePrice('chocolate-total', 'chocolate-price', 'chocolate')"><button onclick="clearOrder('chocolate', 'chocolate-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td><input id="chocolate" type="number" min=0 onchange="calculatePrice('chocolate-total', 'chocolate-price', 'chocolate', 'ch-sign')"><button onclick="clearOrder('chocolate', 'chocolate-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             <td>
                                 <p>
+                                    <span id="ch-sign">$</span>
                                     <span class="total" id="chocolate-total">0</span>
                                 </p>
                             </td>
@@ -215,9 +219,10 @@
                                     <span id="tea-price">3.00</span>
                                 </p>
                             </td>
-                            <td><input id="tea" type="number" min=0 onchange="calculatePrice('tea-total', 'tea-price', 'tea')"><button onclick="clearOrder('tea', 'tea-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                            <td><input id="tea" type="number" min=0 onchange="calculatePrice('tea-total', 'tea-price', 'tea', 't-sign')"><button onclick="clearOrder('tea', 'tea-total')"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             <td>
                                 <p>
+                                    <span id="t-sign">$</span>
                                     <span class="total" id="tea-total">0</span>
                                 </p>
                             </td>
@@ -228,6 +233,7 @@
 
             <div class="w3-container menu w3-padding-48 w3-card">
                 <button id="continue-button" onclick="showTotalTable()">Continue</button>
+                <button id="checkout-button">Checkout</button>
                 <table id="total-table">
                     <tbody>
                         <tr>
@@ -240,6 +246,7 @@
                         </tr>
                     </tbody>
                 </table>
+                
             </div>
 
 
@@ -256,29 +263,34 @@
         function clearOrder(qnty,total){
             //console.log (document.getElementById(qnty).value);
             document.getElementById(qnty).value = null;
-            document.getElementById(total).innerText = null;
+            document.getElementById(total).innerText = 0;
+            document.getElementById(total).style.display="none";
         }
 
         //Calculate the price of each item depending the quantity
-        function calculatePrice(total, price, item){
-            document.getElementById(total).style.display="inline"
+        function calculatePrice(total, price, item, sign){
+            document.getElementById(total).style.display="inline";
+            document.getElementById(sign).style.display="inline";
+
             document.getElementById(total).innerHTML = document.getElementById(price).innerText * document.getElementById(item).value;
         }
 
         // Tabbed Menu
-        function showDrink(){
-            document.getElementById('Drinks').style.display= "block";
-            document.getElementById('Eat').style.display= "none";
+        function showTab(currentMenu, currentTab, previousMenu, previousTab){
+            document.getElementById(currentMenu).style.display= "block";
+            document.getElementById(currentTab).style.backgroundColor="grey";
+            document.getElementById(previousTab).style.backgroundColor="#fdfae6";
+            document.getElementById(previousMenu).style.display= "none";
         }
 
-        function showEat(){
-            document.getElementById('Eat').style.display= "block";
-            document.getElementById('Drinks').style.display= "none";
-        }
-
+        //Calculate subtotal and total
         function showTotalTable(){
+            document.getElementById('continue-button').style.display="block";
+            document.getElementById('checkout-button').style.display="block";
+           document.getElementById('checkout-button').style.float="right";
            document.getElementById('total-table').style.display="block";
-           document.getElementById('total-table').scrollIntoView();
+           document.getElementById('total-table').style.float="right";
+           document.getElementById('checkout-button').scrollIntoView();
 
            var totals = document.getElementsByClassName('total');
            //console.log(totals);
